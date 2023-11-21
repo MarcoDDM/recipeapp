@@ -13,7 +13,7 @@ class FoodsController < ApplicationController
     @food.user = current_user
 
     if @food.save
-      redirect_to foods_path, notice: "Food successfully created!"
+      redirect_to foods_path, notice: 'Food successfully created!'
     else
       render :new
     end
@@ -22,7 +22,7 @@ class FoodsController < ApplicationController
   def destroy
     @food = Food.find(params[:id])
     @food.destroy!
-    redirect_to foods_path, notice: "Food successfully deleted!"
+    redirect_to foods_path, notice: 'Food successfully deleted!'
   end
 
   private
