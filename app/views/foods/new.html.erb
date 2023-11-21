@@ -1,0 +1,29 @@
+<section>
+  <%= link_to foods_path do %>
+    <p class="text-slate-200 text-sm p-2">< Back to foods section </p>
+  <% end %>
+
+  <article>
+    <h2>Create new Food</h2>
+    <%= form_with model: @food, url: foods_path do |form| %>
+      <div class="flex flex-col gap-y-1">
+        <%= form.label :name, class:"font-semibol text-slate-200 text-md" %>
+        <%= form.text_field :name, class:"rounded" %>
+      </div>
+      
+      <div class="flex flex-col gap-y-1">
+        <%= form.label :measurement_unit, class:"font-semibol text-slate-200 text-md" %>
+        <%= form.text_field :measurement_unit, class:"rounded" %>
+      </div>
+      
+      <div class="flex flex-col gap-y-1">
+        <%= form.label :price, class:"font-semibol text-slate-200 text-md" %>
+        <%= form.number_field :price, class:"rounded" %>
+      </div>
+      
+      <div class="flex justify-center">
+        <%= form.submit "Add Post", class:"border border-slate-200 font-bold text-md py-1 px-4 text-slate-200 mt-3" %>
+      </div>
+    <% end %>
+  </article>
+</section>
