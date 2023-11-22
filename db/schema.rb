@@ -13,6 +13,16 @@
 ActiveRecord::Schema[7.1].define(version: 2023_11_21_154933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  
+  create_table "recipes", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.float "preparation_time", null: false
+    t.float "cooking_time", null: false
+    t.text "description", default: "", null: false
+    t.boolean "public", default: false, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
@@ -38,5 +48,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_154933) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "recipes", "users", on_delete: :cascade
   add_foreign_key "foods", "users"
 end
