@@ -1,5 +1,5 @@
 class RecipeFoodsController < ApplicationController
-  def index 
+  def index
     @recipe_foods = RecipeFood.all
     @foods = current_user.foods
   end
@@ -14,7 +14,7 @@ class RecipeFoodsController < ApplicationController
     @recipe_food = RecipeFood.new(recipe_food_params)
     @recipe = Recipe.find(params[:recipe_id])
     @recipe_food.recipe = @recipe
-    
+
     if @recipe_food.save
       redirect_to recipe_path(@recipe)
     else
