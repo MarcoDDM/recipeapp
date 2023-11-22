@@ -1,0 +1,127 @@
+<% content_for :styles do %>
+    .toggle-button {
+      display: inline-block;
+      cursor: pointer;
+      background-color: #ccc;
+      border-radius: 20px;
+      width: 50px;
+      height: 30px;
+      position: relative;
+    }
+    
+    .toggle-checkbox {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 30px;
+    }
+    
+    .toggle-switch-label {
+      display: block;
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: 0.2s;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    .toggle-switch-input:checked + .toggle-switch-label {
+      left: 20px; 
+      background-color: #007bff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+    }
+    
+    /* Estilos para los botones en línea */
+    .inline-buttons {
+      display: inline-block;
+      margin-right: 20px; /* Espacio entre los botones */
+    }
+  <% end %>
+  
+  <div class='container'> 
+    <h4> <%= @recipe.name %> </h4>
+    <div id='pT-cT-sp-btn'>
+      <div id='pT-cT-sP'>
+  
+        <div id='preparation-time'>
+          <span>Preparation time: <%= @recipe.preparation_time %> </span>
+        </div>
+  
+        <div id='cooking-time'>
+          <span> Cooking time: <%= @recipe.cooking_time %> </span>
+        </div>
+  
+        <div id='steps'> 
+          <span> Steps go there... </span>
+          <p> <%= @recipe.description %>
+        </div>
+  
+      </div>
+  
+      <%= link_to recipe_public_toggler_path(@recipe), method: :patch, remote: true do %>
+        <div class="toggle-button">
+          <%= form_for @recipe do |f| %>
+            <div class="toggle-checkbox">
+              <%= f.check_box :public, class: 'toggle-switch-input', id: 'toggle-switch', style: 'display: none;' %>
+              <label class='toggle-switch-label' for='toggle-switch'></label>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+  
+      <div id='gSL-aI'>
+        <div id='gs-list' class="inline-buttons"> <!-- Aplicamos la clase "inline-buttons" -->
+          <button id='gs-btn'>
+          <%= link_to 'generate shoping list ', general_shopping_lists_path(current_user) %>
+          </button>
+        </div>
+  
+        <div id='Add-ingredient' class="inline-buttons"> <!-- Aplicamos la clase "inline-buttons" -->
+          <button id='aI-btn'>
+            <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe) %>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div id='hrLine'> 
+      <div>
+        <div id='food-table'>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Food</th>
+                <th>Quantity</th>
+                <th>Value</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @foods.each do |food| %>
+                <tr>
+                  <td> <%= food.food.name %> </td>
+                  <td><%= food.quantity %></td>
+                  <td><%= food.food.price*food.quantity %></td>
+                  <td>
+                    <button>
+                      <%= link_to "Edit", edit_recipe_recipe_food_path(food) %>
+                    </button>
+  
+                    <button>
+                      <%= form_with url: recipe_recipe_food_path(food), method: :delete do |form| %> 
+                        <%= form.submit "Delete" %>
+                      <% end %>
+                    </button>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+   </div>
+</div>
