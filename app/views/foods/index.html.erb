@@ -1,0 +1,33 @@
+<section>
+  <article>
+    <%= link_to new_food_path do %>
+      <button class="border border-slate-200 rounded py-1 px-4 text-sm font-bold" type="button">Add food</button>
+    <% end %>
+    <table>
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Measurement Unit</th>
+          <th>Unit Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @foods.each do |food| %>
+          <tr>
+            <td><%= food.name %></td>
+            <td><%= food.measurement_unit %></td>
+            <td>$<%= food.price %></td>
+            <td>
+              <% if food.user == current_user %>
+                <%= button_to "Delete", food_path(food), method: :delete, data: { confirm: "Are you sure?" } %>
+              <% else %>
+                <%= button_to "Delete", food_path(food), method: :delete, disabled: true, title: "You can only delete your own food items" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </article>
+</section>
