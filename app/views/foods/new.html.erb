@@ -11,12 +11,17 @@
         <%= form.text_field :name, class:"rounded" %>
       </div>
       
-      <div class="flex flex-col gap-y-1">
-        <%= form.label :measurement_unit, class:"font-semibol text-stone-950 text-md" %>
-        <%= form.text_field :measurement_unit, class:"rounded" %>
+      <div class="flex flex-col gap-y-1 my-1">
+        <%= form.label 'Measurement Unit (Grams, Kilograms, Mililiters, Liters)', class:"font-semibol text-stone-950 text-md" %>
+        <%= form.select :measurement_unit, options_for_select(['g', 'kg', 'ml', 'l']), class:"rounded" %>
       </div>
       
-      <div class="flex flex-col gap-y-1">
+      <div class="flex flex-col gap-y-1 my-1">
+        <%= form.label :quantity, class:"font-semibol text-stone-950 text-md" %>
+        <%= form.number_field :quantity, class:"rounded" %>
+      </div>
+      
+      <div class="flex flex-col gap-y-1 my-1">
         <%= form.label :price, class:"font-semibol text-stone-950 text-md" %>
         <%= form.number_field :price, class:"rounded" %>
       </div>
