@@ -1,8 +1,8 @@
 <section>
   <article class="flex flex-col gap-y-2 max-w-sm md:max-w-lg lg:max-w-4xl mx-auto my-4">
     <div class="flex justify-end">
-      <%= link_to new_food_path do %>
-        <button class="border border-stone-950 rounded py-1 px-4 text-sm font-bold" type="button">Add food</button>
+      <%= link_to new_food_path, id: "AddFood", class: "border border-stone-950 rounded py-1 px-4 text-sm font-bold" do %>
+        Add food
       <% end %>
     </div>
     <table class="min-w-full bg-white border border-stone-950">
