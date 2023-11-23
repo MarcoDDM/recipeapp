@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
   def index
     @foods = Food.all
-    @foods = Food.order(:name).includes(:user)
+    @foods = Food.order(:name).includes(:user, :recipe_foods)
   end
 
   def new
