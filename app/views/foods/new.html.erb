@@ -12,7 +12,7 @@
       </div>
       
       <div class="flex flex-col gap-y-1 my-1">
-        <%= form.label 'Measurement Unit (Grams, Kilograms, Mililiters, Liters)', class:"font-semibol text-stone-950 text-md" %>
+        <%= form.label :measurement_unit, class:"font-semibol text-stone-950 text-md" %>
         <%= form.select :measurement_unit, options_for_select(['g', 'kg', 'ml', 'l']), class:"rounded" %>
       </div>
       
