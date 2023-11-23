@@ -4,7 +4,7 @@ RSpec.describe Food, type: :model do
   before do
     @user = User.create(name: 'Felipe', email: 'example@mail.com', password: 'password',
                         password_confirmation: 'password')
-    food = Food.create(name: 'Apple', measurement_unit: 'kg', price: 2, quantity: 2, user: @user)
+    Food.create(name: 'Apple', measurement_unit: 'kg', price: 2, quantity: 2, user: @user)
   end
 
   describe 'Foreign keys' do

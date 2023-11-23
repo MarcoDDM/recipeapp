@@ -4,8 +4,8 @@ RSpec.feature 'Public Recipes Index Page', type: :feature do
   before do
     user = User.create(name: 'Felipe', email: 'example@mail.com', password: 'password',
                        password_confirmation: 'password')
-    food = Food.create(name: 'Apple', measurement_unit: 'kg', price: 2, quantity: 2, user:)
-    other_food = Food.create(name: 'Banana', measurement_unit: 'kg', price: 5, quantity: 2, user:)
+    Food.create(name: 'Apple', measurement_unit: 'kg', price: 2, quantity: 2, user:)
+    Food.create(name: 'Banana', measurement_unit: 'kg', price: 5, quantity: 2, user:)
     @recipe = Recipe.create(name: 'Asado', preparation_time: 12, cooking_time: 2, description: 'Desc', public: true,
                             user:)
     login_as(user)
