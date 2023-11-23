@@ -1,5 +1,5 @@
 <% content_for :styles do %>
-    ul {
+    .recipes_container {
         max-width: 500px;
         margin: auto;
         padding-left: unset;
@@ -43,7 +43,7 @@
             <%= link_to "Add Recipe", new_recipe_path %>
         </button>
     </div>
-    <ul> 
+    <ul class="recipes_container"> 
     <% @recipes.each do |recipe| %>
         <li class='recipe'>
             <div class='rname'>

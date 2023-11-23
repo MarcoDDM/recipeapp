@@ -3,7 +3,10 @@ class RecipesController < ApplicationController
     @recipes = current_user.recipes.all
   end
 
-  def show; end
+  def show
+    @recipe = Recipe.find(params[:id])
+    @recipe_foods = @recipe.recipe_foods
+  end
 
   def create
     @recipe = Recipe.new(recipe_params)

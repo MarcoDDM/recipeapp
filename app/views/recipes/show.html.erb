@@ -62,7 +62,7 @@
   
       </div>
   
-      <%= link_to recipe_public_toggler_path(@recipe), method: :patch, remote: true do %>
+      <%= link_to recipe_path(@recipe), method: :patch, remote: true do %>
         <div class="toggle-button">
           <%= form_for @recipe do |f| %>
             <div class="toggle-checkbox">
@@ -73,49 +73,53 @@
         </div>
       <% end %>
   
-      <div id='gSL-aI'>
-        <div id='gs-list' class="inline-buttons"> <!-- Aplicamos la clase "inline-buttons" -->
+      <div id='gSL-aI' class="flex justify-between my-4">
+        <div id='gs-list' class="inline-buttons">
           <button id='gs-btn'>
-          <%= link_to 'generate shoping list ', general_shopping_lists_path(current_user) %>
+          <%= link_to 'Generate Shoping List', recipe_shopping_list_index_path(@recipe) %>
           </button>
         </div>
-  
-        <div id='Add-ingredient' class="inline-buttons"> <!-- Aplicamos la clase "inline-buttons" -->
-          <button id='aI-btn'>
-            <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe) %>
-          </button>
-        </div>
+
+        <% if @recipe.user == current_user %>   
+          <div id='Add-ingredient' class="inline-buttons">
+            <button id='aI-btn'>
+              <%= link_to "Add Ingredients", new_recipe_recipe_food_path(@recipe) %>
+            </button>
+          </div>
+        <% else %>
+          <div id='Add-ingredient' class="inline-buttons">
+            <button disabled title="Log in to access" id='aI-btn'>
+              Add Ingredients
+            </button>
+          </div>
+        <% end %>
       </div>
     </div>
   
     <div id='hrLine'> 
       <div>
         <div id='food-table'>
-          <table border="1">
-            <thead>
+          <table border="1" class="min-w-full bg-white border border-stone-950 my-4">
+            <thead class="bg-gray-300">
               <tr>
-                <th>Food</th>
-                <th>Quantity</th>
-                <th>Value</th>
-                <th>Actions</th>
+                <th class="py-2 px-4 border-r">Food</th>
+                <th class="py-2 px-4 border-r">Quantity</th>
+                <th class="py-2 px-4 border-r">Value</th>
+                <th class="py-2 px-4 border-r border-stone-950">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <% @foods.each do |food| %>
+              <% @recipe_foods.each do |food| %>
                 <tr>
-                  <td> <%= food.food.name %> </td>
-                  <td><%= food.quantity %></td>
-                  <td><%= food.food.price*food.quantity %></td>
-                  <td>
-                    <button>
-                      <%= link_to "Edit", edit_recipe_recipe_food_path(food) %>
-                    </button>
-  
-                    <button>
-                      <%= form_with url: recipe_recipe_food_path(food), method: :delete do |form| %> 
-                        <%= form.submit "Delete" %>
-                      <% end %>
-                    </button>
+                  <td class="py-2 px-4 border-r"><%= food.food.name %></td>
+                  <td class="py-2 px-4 border-r"><%= food.quantity %></td>
+                  <td class="py-2 px-4 border-r">$<%= food.food.price * food.quantity %></td>
+                  <td class="py-2 px-4 border-r border-stone-950 text-center">
+                  <% if food.recipe.user == current_user %>
+                    <%= button_to "Delete", recipe_recipe_food_path(food), method: :delete, data: { confirm: "Are you sure?" } %>
+                  <% else %>
+                    <%= button_to "Delete", recipe_recipe_food_path(food), method: :delete, disabled: true, title: "You can only delete your own food items" %>
+                  <% end %>
                   </td>
                 </tr>
               <% end %>
