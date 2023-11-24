@@ -14,7 +14,11 @@ class GeneralShoppingListsController < ApplicationController
 
   def calculate_totals
     @total_quantity_in_recipes = @recipes.flat_map { |recipe| recipe.recipe_foods.map(&:quantity) }.sum
-    @total_price_in_recipes = @recipes.flat_map { |recipe| recipe.recipe_foods.map { |rf| rf.food.price * rf.quantity } }.sum
+    @total_price_in_recipes = @recipes.flat_map do |recipe|
+      recipe.recipe_foods.map do |rf|
+        rf.food.price * rf.quantity
+      end
+    end.sum
     @total_quantity_in_general_list = @general_food_list.sum(:quantity)
     @total_price_in_general_list = @general_food_list.sum { |food| food.price * food.quantity }
     @missing_quantity = @total_quantity_in_recipes - @total_quantity_in_general_list

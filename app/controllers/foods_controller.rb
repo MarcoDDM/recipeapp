@@ -28,11 +28,10 @@ class FoodsController < ApplicationController
   end
 
   def missing_food
+    # rubocop:disable Layout/LineLength
     @user = current_user
     @general_food_list = @user.foods.group(:name).select('food.name, SUM(food.quantity) as total_quantity, SUM(food.price * food.quantity) as total_price')
-
     @food_used_in_recipes = @user.foods.joins(:recipe_foods).group(:name).select('food.name, SUM(recipe_foods.quantity) as total_quantity')
-
     @missing_food = @general_food_list.map do |general_food|
       used_food = @food_used_in_recipes.find { |food| food.name == general_food.name }
       difference_quantity = used_food ? used_food.total_quantity - general_food.total_quantity : general_food.total_quantity
@@ -50,6 +49,7 @@ class FoodsController < ApplicationController
       }
     end
   end
+  # rubocop:enable Layout/LineLength
 
   private
 
