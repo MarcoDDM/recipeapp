@@ -41,6 +41,16 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def toggle_privacy
+    @recipe = Recipe.find(params[:id])
+    if @recipe.public == true 
+      @recipe.update(public: false)
+    else
+      @recipe.update(public: true)
+    end
+    redirect_to recipe_path@recipe, notice: 'Recipe privacy updated successfully.'
+  end
+
   def recipe_params
     params.require(:recipe).permit(:name, :description, :preparation_time, :cooking_time, :public)
   end
