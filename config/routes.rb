@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :users
   resources :recipes do
+    member do
+      patch 'toggle_privacy'
+    end
     resources :shopping_list
     resources :recipe_foods
   end
