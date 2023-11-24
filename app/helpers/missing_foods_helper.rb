@@ -1,0 +1,2 @@
+module MissingFoodsHelper
+end

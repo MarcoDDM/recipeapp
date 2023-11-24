@@ -7,11 +7,11 @@ default: &default
 
 development:
   <<: *default
-  database: recipe_development
+  database: Recipe
 
 test:
   <<: *default
-  database: recipe_test
+  database: Recipe-testing
 
 production:
   <<: *default

@@ -15,9 +15,12 @@
         <li>
           <%= link_to "My Recipes", recipes_path, class: "text-md text-stone-950 #{active_class(recipes_path)}" %>
         </li>
-        <li>
-          <%= link_to "General food list", general_shopping_lists_path(current_user), class: "text-md text-stone-950 #{active_class(general_shopping_lists_path)}" %>
-        </li>
+        <% if @recipe.present? %>
+          <li>
+            <%= link_to 'Generate Shopping List', recipe_general_shopping_lists_path(@recipe), class: "text-md text-stone-950 #{active_class(recipe_general_shopping_lists_path(@recipe))}" %>
+          </li>
+        <% end %>
+
       </ul>
     <% end %>
   </nav>

@@ -7,8 +7,10 @@ Rails.application.routes.draw do
     member do
       patch 'toggle_privacy'
     end
-    resources :shopping_list
+    resources :general_shopping_lists
     resources :recipe_foods
   end
-  resources :foods, only: [:index, :new, :create, :destroy]
+  resources :foods, only: [:index, :new, :create,:destroy]
+  get '/missing_foods', to: 'missing_foods#index', as: 'missing_foods'
+
 end
