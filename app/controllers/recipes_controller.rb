@@ -48,7 +48,7 @@ class RecipesController < ApplicationController
     else
       @recipe.update(public: true)
     end
-    redirect_to recipe_path @recipe, notice: 'Recipe privacy updated successfully.'
+    redirect_to recipe_path @recipe
   end
 
   def recipe_params
