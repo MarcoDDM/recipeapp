@@ -15,6 +15,9 @@
         <li>
           <%= link_to "My Recipes", recipes_path, class: "text-md text-stone-950 #{active_class(recipes_path)}" %>
         </li>
+        <li>
+          <%= link_to "General food list", general_shopping_lists_path(current_user), class: "text-md text-stone-950 #{active_class(general_shopping_lists_path)}" %>
+        </li>
       </ul>
     <% end %>
   </nav>
