@@ -1,0 +1,41 @@
+<div class='max-w-sm md:max-w:lg lg:max-w-2xl xl:max-w-4xl mx-auto'>
+  
+</div>
+
+<section>
+  <article class="flex flex-col gap-y-2 max-w-sm md:max-w-lg lg:max-w-xl mx-auto my-4">
+    <h1 class="font-bold text-center text-4xl">Sign in</h1>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex flex-col gap-y-4" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "Name", class: "w-full rounded" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "w-full rounded" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full rounded" %>
+      </div>
+
+      <div class="flex justify-center">
+        <%= f.submit "Sign up", class:"border border-stone-950 font-bold text-md py-1 px-4 text-stone-950 mt-3 cursor-pointer" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </article>
+</section>

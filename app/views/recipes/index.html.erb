@@ -1,0 +1,24 @@
+<section>
+  <article class="flex flex-col gap-y-2 max-w-sm md:max-w-lg lg:max-w-4xl mx-auto my-4">
+    <div class="flex justify-end">
+        <button>
+            <%= link_to "Add Recipe", new_recipe_path, class:"border border-stone-950 font-bold text-md py-1 px-4 text-stone-950 mt-3 cursor-pointer" %>
+        </button>
+    </div>
+    <% @recipes.each do |recipe| %>
+        <div class="flex justify-between items-center border border-stone-950 p-2">
+            <div>
+                <%= link_to recipe.name, recipe_path(recipe), class: "font-bold text-3xl" %>  
+                <h3 class="font-semibold text-lg"><%= recipe.description %></h3>
+            </div>
+            <div class='flex gap-x-2 items-center'>
+                <button>
+                    <%= link_to "Edit", edit_recipe_path(recipe) %>
+                </button>
+
+                <%= button_to "Remove", recipe_path(recipe), method: :delete, data: { confirm: "Are you sure?" } %>
+            </div>
+        </div>
+    <% end %>
+  </article>
+</section>

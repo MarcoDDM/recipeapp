@@ -1,0 +1,29 @@
+<!-- app/views/general_shopping_lists/index.html.erb -->
+<section>
+  <article class="flex flex-col gap-y-2 max-w-sm md:max-w-lg lg:max-w-4xl mx-auto my-4">
+    <h1 class="text-center font-bold text-4xl">General Shopping List</h1>
+    <div class="flex justify-between items-center">
+      <h3 class="text-center font-semibold text-xl">Amount of food items to buy: <%= @missing_foods.keys.count %></h3>
+      <h3 class="text-center font-semibold text-xl">Total value of food needed: $<%= @missing_foods.sum { |food, quantity| food.price * quantity.to_i } %></h3>
+    </div>
+
+    <table border="1" class="min-w-full bg-white border border-stone-950 my-4">
+      <thead class="bg-gray-300">
+        <tr>
+          <th class="py-2 px-4 border-r">Food</th>
+          <th class="py-2 px-4 border-r">Quantity</th>
+          <th class="py-2 px-4 border-r border-stone-950">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @missing_foods.each do |food, quantity| %>
+          <tr>
+            <td class="py-2 px-4 border-r"><%= food.name %></td>
+            <td class="py-2 px-4 border-r"><%= quantity %></td>
+            <td class="py-2 px-4 border-r border-stone-950">$<%= food.price * quantity.to_i %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </article>
+</section>

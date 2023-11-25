@@ -1,0 +1,16 @@
+<section>
+  <article class="flex flex-col gap-y-2 mx-auto max-w-sm md:max-w-lg lg:max-w-4xl my-4">
+    <% @recipes.each do |recipe| %>
+      <%= link_to recipe_path(recipe), class: "border border-stone-950 p-2 flex justify-between items-center" do %>
+        <div>
+          <h2 class="font-bold text-2xl"><%= recipe.name %></h2>
+          <h4 class="font-medium text-lg">By: <%= recipe.user.name %></h4>
+        </div>
+        <div>
+          <h2 class="font-medium text-lg">Total food items: <%= recipe.recipe_foods.count %></h2>
+          <h4 class="font-medium text-lg">Total price: $<%= recipe.recipe_foods.sum { |food| food.food.price * food.quantity } %></h4>
+        </div>
+      <% end %>
+    <% end %>
+  </article>
+</section>

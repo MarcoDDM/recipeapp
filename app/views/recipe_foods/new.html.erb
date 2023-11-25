@@ -1,0 +1,22 @@
+<section>
+  <%= link_to recipe_path(@recipe) do %>
+    <p class="text-stone-950 text-sm p-2">< Back to <%= @recipe.name %> details </p>
+  <% end %>
+
+  <article class="flex flex-col gapy-y-2 mx-auto max-w-sm md:max-w-lg lg:max-w-2xl">
+    <h2 class="text-lg font-semibold">Add new ingredient</h2>
+    <%= form_with model: @recipe_food, url: recipe_recipe_foods_path(@recipe) do |form| %>
+      <div class="flex flex-col gap-y-1 my-1">
+        <%= form.label "Food", class:"font-semibol text-stone-950 text-md" %>
+        <%= form.select :food_id, options_for_select(@foods.to_a.map { |food| ["#{food.name} - $#{food.price}", food.id] }), class:"rounded" %>
+      </div>
+      <div class="flex flex-col gap-y-1 my-1">
+        <%= form.label :quantity, class:"font-semibol text-stone-950 text-md" %>
+        <%= form.number_field :quantity, class:"rounded" %>
+      </div>
+      <div class="flex justify-center">
+        <%= form.submit "Add Ingredient", class:"border border-stone-950 font-bold text-md py-1 px-4 text-stone-950 mt-3 cursor-pointer" %>
+      </div>
+    <% end %>
+  </article>
+</section>
