@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Public Recipes Index Page', type: :feature do
+RSpec.feature 'Foods Index Page', type: :feature do
   before do
     user = User.create(name: 'Felipe', email: 'example@mail.com', password: 'password',
                        password_confirmation: 'password')
@@ -29,6 +29,7 @@ RSpec.feature 'Public Recipes Index Page', type: :feature do
 
       expect(page).to have_current_path(new_food_path)
     end
+
     it 'Should delete the food item', js: true do
       click_button 'Delete'
 

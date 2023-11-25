@@ -1,65 +1,24 @@
-<% content_for :styles do %>
-    .recipes_container {
-        max-width: 500px;
-        margin: auto;
-        padding-left: unset;
-    }
-
-    .recipe {
-        border: 2px solid black;
-        padding: 2rem;
-        margin-bottom: 1rem;
-        list-style-type: none;
-        display: flex;
-        gap: 2rem;
-    }
-    .rname {
-        font-weight: bold;
-        width: 40%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: .5rem;
-    }
-    a {
-        color: black;
-    }
-    
-    .auser {
-        text-align: right;
-        padding: 1rem;
-    }
-    .edit-remove {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-<% end %>
-
-
-<div class='container'> 
-    <div class='auser'>
+<section>
+  <article class="flex flex-col gap-y-2 max-w-sm md:max-w-lg lg:max-w-4xl mx-auto my-4">
+    <div class="flex justify-end">
         <button>
-            <%= link_to "Add Recipe", new_recipe_path %>
+            <%= link_to "Add Recipe", new_recipe_path, class:"border border-stone-950 font-bold text-md py-1 px-4 text-stone-950 mt-3 cursor-pointer" %>
         </button>
     </div>
-    <ul class="recipes_container"> 
     <% @recipes.each do |recipe| %>
-        <li class='recipe'>
-            <div class='rname'>
-                <%= link_to recipe.name, recipe_path(recipe)  %>  
+        <div class="flex justify-between items-center border border-stone-950 p-2">
+            <div>
+                <%= link_to recipe.name, recipe_path(recipe), class: "font-bold text-3xl" %>  
+                <h3 class="font-semibold text-lg"><%= recipe.description %></h3>
             </div>
-            <div><%= recipe.description %>  </div>
-            <div class='edit-remove'>
+            <div class='flex gap-x-2 items-center'>
                 <button>
                     <%= link_to "Edit", edit_recipe_path(recipe) %>
                 </button>
 
-                <%= form_with url: recipe_path(recipe), method: :delete do |form| %> 
-                    <%= form.submit "remove" %>
-                <% end %>
+                <%= button_to "Remove", recipe_path(recipe), method: :delete, data: { confirm: "Are you sure?" } %>
             </div>
-        </li>
+        </div>
     <% end %>
-    </ul>
-</div>
+  </article>
+</section>

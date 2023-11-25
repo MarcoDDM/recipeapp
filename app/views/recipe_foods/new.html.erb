@@ -7,7 +7,7 @@
     <h2 class="text-lg font-semibold">Add new ingredient</h2>
     <%= form_with model: @recipe_food, url: recipe_recipe_foods_path(@recipe) do |form| %>
       <div class="flex flex-col gap-y-1 my-1">
-        <%= form.label :food, class:"font-semibol text-stone-950 text-md" %>
+        <%= form.label "Food", class:"font-semibol text-stone-950 text-md" %>
         <%= form.select :food_id, options_for_select(@foods.to_a.map { |food| ["#{food.name} - $#{food.price}", food.id] }), class:"rounded" %>
       </div>
       <div class="flex flex-col gap-y-1 my-1">

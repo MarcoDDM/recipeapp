@@ -10,7 +10,5 @@ Rails.application.routes.draw do
     resources :general_shopping_lists
     resources :recipe_foods
   end
-  resources :foods, only: [:index, :new, :create,:destroy]
-  get '/missing_foods', to: 'missing_foods#index', as: 'missing_foods'
-
+  resources :foods, only: [:index, :new, :create, :destroy]
 end

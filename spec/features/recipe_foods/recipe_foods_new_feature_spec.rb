@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.feature 'Public Recipes Index Page', type: :feature do
+RSpec.feature 'Recipe Foods New Page', type: :feature do
   before do
-    user = User.create(name: 'Felipe', email: 'example@mail.com', password: 'password',
+    user = User.create(name: 'Marco', email: 'example@mail.com', password: 'password',
                        password_confirmation: 'password')
     Food.create(name: 'Apple', measurement_unit: 'kg', price: 2, quantity: 2, user:)
     Food.create(name: 'Banana', measurement_unit: 'kg', price: 5, quantity: 2, user:)

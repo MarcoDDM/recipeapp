@@ -1,6 +1,6 @@
 <section>
   <article class="flex flex-col gap-y-2 max-w-sm md:max-w-lg lg:max-w-4xl mx-auto my-4">
-    <h1 class="font-bold text-4xl text-center"><%= @recipe.name %></h1>  
+    <h1 class="font-bold text-3xl text-center"><%= @recipe.name %></h1>  
     <div class="flex justify-between">
       <div class="flex flex-col gap-y-3 justify-start">
         <h3 class="font-medium text-2xl">Preparation Time: <%= @recipe.preparation_time %></h3>
@@ -35,7 +35,7 @@
 
     <div class="flex justify-between items-center my-3">
       <button class="border border-stone-950 font-bold text-md px-4 text-stone-950 cursor-pointer">
-        <%= link_to 'Generate Shoping List', recipe_shopping_list_index_path(@recipe) %>
+        <%= link_to 'Generate Shoping List', recipe_general_shopping_lists_path(@recipe) %>
       </button>
 
       <% if @recipe.user == current_user %>   
