@@ -73,5 +73,6 @@ gem 'foreman', '~> 0.87.2'
 
 gem 'devise', '~> 4.9'
 
-gem 'cancancan'
 gem 'tailwindcss-rails', '~> 2.0'
+
+gem 'shoulda-matchers', '~> 4.0'

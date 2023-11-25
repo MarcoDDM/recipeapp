@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Recipe</title>
+    <title>IRecipe</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,12 +9,124 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .user-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .post h2 {
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        .comments {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .comments ul {
+            margin: 0;
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+      .action-buttons {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 10px;
+      }
+
+      .action-buttons form {
+          display: inline;
+      }
+      .delete-button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: #cc0000;
+        }
+
+        .like-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .like-button:hover {
+            background-color: #0056b3;
+        }
+
+      a {
+        text-decoration: none;
+      }
+
+      .alert {
+        text-align: center;
+        color: red;
+      }
+      .notice {
+        text-align: center;
+        color: lightgreen;
+      }
+
+      .link {
+        text-align: center;
+        margin-top: 20px;
+      }
+        <%= yield(:styles) %>
+
+    </style>
+    
   </head>
 
   <body>
-    <main class="bg-slate-600">
-      <h1>Hola</h1>
-      <%= yield %>
-    </main>
+    <%= render 'shared/navbar' %>
+    <p class="text-green-700 text-center text-lg"><%= notice %></p>
+    <p class="text-red-700 text-center text-lg"><%= alert %></p>
+    <%= yield %>
   </body>
 </html>

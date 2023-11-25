@@ -1,0 +1,21 @@
+<header class="border-b border-stone-950">
+  <nav class="h-14 flex items-center max-w-sm md:max-w-lg lg:max-w-4xl mx-auto">
+    <% if user_signed_in? %>
+      <ul class="flex gap-x-2 justify-end items-center">
+        <li class="text-md font-semibold">Hi <%= current_user.name %></li>
+        <li>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "text-md text-stone-950 border-r border-stone-950 mr-4 pr-4 #{active_class(destroy_user_session_path)}" %>
+        </li>
+        <li>
+          <%= link_to "Public Recipes", root_path, class: "text-md text-stone-950 #{active_class(root_path)}" %>
+        </li>
+        <li>
+          <%= link_to "Food List", foods_path, class: "text-md text-stone-950 #{active_class(foods_path)}" %>
+        </li>
+        <li>
+          <%= link_to "My Recipes", recipes_path, class: "text-md text-stone-950 #{active_class(recipes_path)}" %>
+        </li>
+      </ul>
+    <% end %>
+  </nav>
+</header>

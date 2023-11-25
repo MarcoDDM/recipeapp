@@ -1,0 +1,85 @@
+<section>
+  <article class="flex flex-col gap-y-2 max-w-sm md:max-w-lg lg:max-w-4xl mx-auto my-4">
+    <h1 class="font-bold text-3xl text-center"><%= @recipe.name %></h1>  
+    <div class="flex justify-between">
+      <div class="flex flex-col gap-y-3 justify-start">
+        <h3 class="font-medium text-2xl">Preparation Time: <%= @recipe.preparation_time %></h3>
+        <h3 class="font-medium text-2xl">Cooking Time: <%= @recipe.cooking_time %></h3>
+        <h3 class="font-medium text-2xl">Steps go here...</h3>
+        <h3 class="font-medium text-2xl"><%= @recipe.description %></h3>
+      </div>
+
+      <div>
+        <span class="font-medium text-2xl">Public: <%= @recipe.public %></span>
+        <%= form_with(model: @recipe, url: toggle_privacy_recipe_path(@recipe), method: :patch) do |form| %>
+          <% if @recipe.user == current_user %>
+            <%= button_tag(type: 'submit', class: "") do %>
+              <% if @recipe.public %>
+                <%= image_tag('toggle_on.png', alt: 'Toggle On', class: "") %>
+              <% else %>
+                <%= image_tag('toggle_off.png', alt: 'Toggle Off', class: "") %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= button_tag(disabled: true, title: "Log in to change") do %>
+              <% if @recipe.public %>
+                <%= image_tag('toggle_on.png', alt: 'Toggle On', class: "") %>
+              <% else %>
+                <%= image_tag('toggle_off.png', alt: 'Toggle Off', class: "") %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-center my-3">
+      <button class="border border-stone-950 font-bold text-md px-4 text-stone-950 cursor-pointer">
+        <%= link_to 'Generate Shoping List', recipe_general_shopping_lists_path(@recipe) %>
+      </button>
+
+      <% if @recipe.user == current_user %>   
+        <div id='Add-ingredient' class="">
+          <%= link_to new_recipe_recipe_food_path(@recipe), class: "border border-stone-950 font-bold text-md py-1 px-4 text-stone-950 cursor-pointer h-10" do %>
+            <button class: "border border-stone-950 font-bold text-md py-1 px-4 text-stone-950 cursor-pointer h-10">
+              Add Ingredients
+            </button>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="">
+          <button disabled title="Log in to access", class: "border border-stone-950 font-bold text-md py-1 px-4 text-stone-950 cursor-pointer">
+            Add Ingredients
+          </button>
+        </div>
+      <% end %>
+    </div>
+
+    <table border="1" class="min-w-full bg-white border border-stone-950 my-4">
+      <thead class="bg-gray-300">
+        <tr>
+          <th class="py-2 px-4 border-r">Food</th>
+          <th class="py-2 px-4 border-r">Quantity</th>
+          <th class="py-2 px-4 border-r">Value</th>
+          <th class="py-2 px-4 border-r border-stone-950">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipe_foods.each do |food| %>
+          <tr>
+            <td class="py-2 px-4 border-r"><%= food.food.name %></td>
+            <td class="py-2 px-4 border-r"><%= food.quantity %></td>
+            <td class="py-2 px-4 border-r">$<%= food.food.price * food.quantity %></td>
+            <td class="py-2 px-4 border-r border-stone-950 text-center">
+            <% if food.recipe.user == current_user %>
+              <%= button_to "Delete", recipe_recipe_food_path(food), method: :delete, data: { confirm: "Are you sure?" } %>
+            <% else %>
+              <%= button_to "Delete", recipe_recipe_food_path(food), method: :delete, disabled: true, title: "You can only delete your own food items" %>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </article>
+</section>
