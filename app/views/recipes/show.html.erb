@@ -35,7 +35,7 @@
 
     <div class="flex justify-between items-center my-3">
       <button class="border border-stone-950 font-bold text-md px-4 text-stone-950 cursor-pointer">
-        <%= link_to 'Generate Shoping List', recipe_general_shopping_lists_path(@recipe) %>
+        <%= link_to "Generate Shopping list", general_shopping_lists_path %>
       </button>
 
       <% if @recipe.user == current_user %>   

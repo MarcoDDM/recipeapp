@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     member do
       patch 'toggle_privacy'
     end
-    resources :general_shopping_lists
     resources :recipe_foods
   end
   resources :foods, only: [:index, :new, :create, :destroy]
+  resources :general_shopping_lists
 end
