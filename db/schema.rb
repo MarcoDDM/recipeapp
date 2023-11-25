@@ -17,38 +17,34 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_003728) do
   create_table "foods", force: :cascade do |t|
     t.string "name"
     t.string "measurement_unit"
-    t.integer "price"
+    t.decimal "price"
     t.integer "quantity"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
   create_table "recipe_foods", force: :cascade do |t|
-    t.integer "quantity"
-    t.bigint "recipe_id"
-    t.bigint "food_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "quantity", null: false
+    t.bigint "recipe_id", null: false
+    t.bigint "food_id", null: false
     t.index ["food_id"], name: "index_recipe_foods_on_food_id"
     t.index ["recipe_id"], name: "index_recipe_foods_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string "name"
-    t.float "preparation_time"
-    t.float "cooking_time"
-    t.text "description"
-    t.boolean "public"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", default: "", null: false
+    t.float "preparation_time", null: false
+    t.float "cooking_time", null: false
+    t.text "description", default: "", null: false
+    t.boolean "public", default: false, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -56,10 +52,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_003728) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "recipe_foods", "foods"
-  add_foreign_key "recipes", "users"
+  add_foreign_key "foods", "users", on_delete: :cascade
+  add_foreign_key "recipe_foods", "foods", on_delete: :cascade
+  add_foreign_key "recipe_foods", "recipes", on_delete: :cascade
+  add_foreign_key "recipes", "users", on_delete: :cascade
 end
