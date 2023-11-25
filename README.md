@@ -111,12 +111,10 @@ To run tests, run the following command:
 
 👤 **Felipe Perez Ferraro**
 
-- Linkedin: [Felipe Perez Ferraro](https://www.linkedin.com/in/felipe-perez-ferraro-6b9358218/) 
 - GitHub: [@Felipe-Perez-Ferraro](https://github.com/Felipe-Perez-Ferraro)
 
-👤 **Felipe Perez Ferraro**
+👤 **Marco Almada**
 
-- Linkedin: []() 
 - GitHub: [@MarcoDDM](https://github.com/MarcoDDM)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
