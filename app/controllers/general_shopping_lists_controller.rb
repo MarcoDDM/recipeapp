@@ -1,11 +1,9 @@
-# app/controllers/general_shopping_lists_controller.rb
 class GeneralShoppingListsController < ApplicationController
   def index
     @user = current_user
     @recipes = @user.recipes.includes(:recipe_foods)
     @general_food_list = @user.foods
 
-    # Calculate the missing foods with quantity
     @missing_foods = calculate_missing_foods_with_quantity
   end
 
