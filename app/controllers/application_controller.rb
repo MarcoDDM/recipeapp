@@ -5,19 +5,19 @@ class ApplicationController < ActionController::Base
   protected
 
   def recipe_controller?
-    controller_name == 'recipes' 
+    controller_name == 'recipes'
   end
 
   def set_recipe
     @recipe = Recipe.last || create_default_recipe
   end
-  
+
   private
-  
+
   def create_default_recipe
     Recipe.create(default_recipe_attributes)
   end
-  
+
   def default_recipe_attributes
     { name: 'Default Recipe', description: 'This is the default recipe.' }
   end
