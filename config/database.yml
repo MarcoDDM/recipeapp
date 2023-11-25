@@ -3,15 +3,15 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: postgres
-  password: password
+  password: 12345678
 
 development:
   <<: *default
-  database: recipe_development
+  database: Recipe
 
 test:
   <<: *default
-  database: recipe_test
+  database: Recipe-testing
 
 production:
   <<: *default
