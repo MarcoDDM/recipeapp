@@ -142,9 +142,19 @@ Feel free to check the [issues page](https://github.com/MarcoDDM/recipe/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- SUPPORT -->
+
+## ⭐️ Show your support <a name="support"></a>
+
+If you like this project please share with your friends and family!
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- ACKNOWLEDGEMENTS -->
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+I would like to thank Microverse for teach me and support me to do this
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
