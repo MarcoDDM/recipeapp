@@ -11,7 +11,7 @@ development:
 
 test:
   <<: *default
-  database: recipe_test
+  database: recipe_testing
 
 production:
   <<: *default
